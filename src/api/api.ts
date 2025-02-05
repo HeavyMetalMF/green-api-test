@@ -20,9 +20,11 @@ export const getMessage = async (idInstance: string, apiTokenInstance: string, c
             const data = response.data
             let webhookBody = data.body;
             if (webhookBody.typeWebhook === 'incomingMessageReceived') {
-                const message = webhookBody.messageData.textMessageData.textMessage
+                const message = webhookBody.messageData.textMessageData?.textMessage
                 await axios.delete(`${url}/deleteNotification/${apiTokenInstance}/` + data.receiptId)
-                callback?.({textMessage: message, idMessage: webhookBody.idMessage, type: MessagesType.Incoming});
+                if (message) {
+                    callback?.({textMessage: message, idMessage: webhookBody.idMessage, type: MessagesType.Incoming});
+                }
                 await getMessage(idInstance, apiTokenInstance, callback);
             }
             await axios.delete(`${url}/deleteNotification/${apiTokenInstance}/` + data.receiptId)

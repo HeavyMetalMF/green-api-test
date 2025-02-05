@@ -3,7 +3,7 @@ import './App.scss';
 import useLocalStorage from "./hooks/useLocalStorage";
 import {useAppDispatch, useAppSelector} from "./store/hooks";
 import {addMessage, setOtherUserName} from "./store/slices/messagesSlice";
-import {getMessage, getUserName, sendMessage} from "./api/api";
+import {getMessage, getUserName} from "./api/api";
 import ApiDataForm from "./components/ApiDataForm";
 import {ApiData} from "./common/types";
 import ChatPreview from "./components/ChatPreview";
