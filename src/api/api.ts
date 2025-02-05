@@ -56,7 +56,7 @@ export const getUserName = async (number: string, idInstance: string, apiTokenIn
     const URL = `/waInstance${idInstance}/GetContactInfo/${apiTokenInstance}`
     const response = await axios.post(URL, {"chatId": number + "@c.us"})
     if (response.status === 200) {
-        return response.data.name
+        return response.data.name ? response.data.name : 'Нет данных'
     }
     return null
 }
